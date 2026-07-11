@@ -25,7 +25,6 @@ export default function Login(){
 
             const data = await response.json()
             if (!response.ok) {
-                // Read the message we generated in our Express controller!
                 throw new Error(data.message || 'Authentication failed');
             }
             console.log(data)
@@ -67,6 +66,8 @@ export default function Login(){
 
                         >Email</label>
                         <input
+                            required
+                            id='email'
                         type='email'
                         name='email'
                         placeholder='yourname@email.com'
@@ -77,13 +78,15 @@ export default function Login(){
 
                         >Password</label>
                         <input
+                            id='password'
                             name='password'
+                            required
                             type='password'
                             placeholder='Min 6. characters'
                             className='p-4 rounded-full border border-gray-200 '
                         />
                         {/* TODO: Change this to link to another page to recover password */}
-                        <span className='cursor-pointer text-sm text-blue-500 self-end'>
+                        <span className='border-b border-gray-200 cursor-pointer text-sm text-blue-500 self-end'>
                             Forgot password?
                         </span>
 

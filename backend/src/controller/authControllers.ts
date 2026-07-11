@@ -33,7 +33,6 @@ export const signUpUser = async (req: Request, res: Response) => {
         })
         if (existingUser) return res.status(409).json({success: false, message: 'User already exists'})
 
-
         const hashedPassword = await hashPassword(validatedData.password)
 
         if (!hashedPassword) return res.status(400).json({success: false, message: 'Error hashing password'})
@@ -46,9 +45,13 @@ export const signUpUser = async (req: Request, res: Response) => {
             }
         })
 
+        const token = jwt.sign({
+            userId: newUser.id
+        }, JWT_SECRET, {expiresIn: '1d'})
+
         const {password, ...newUserData}= newUser
 
-        return res.json({success: true, message: "Signup successful", data: newUserData})
+        return res.json({success: true, message: "Signup successful", data: newUserData, token})
     } catch (error) {
         if (error instanceof z.ZodError) {
             return res.status(400).json({success: false, error: error})

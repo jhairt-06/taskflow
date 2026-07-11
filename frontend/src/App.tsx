@@ -1,11 +1,11 @@
-import Login from './pages/Login.tsx'
+import Signup from './pages/Signup.tsx'
 
 function App() {
 
 
   return (
     <div>
-      <Login />
+      <Signup />
     </div>
   )
 }
