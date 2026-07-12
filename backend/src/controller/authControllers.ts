@@ -3,15 +3,11 @@ import "dotenv/config"
 import express, {type Request, type Response} from "express";
 import jwt from 'jsonwebtoken'
 import {z} from 'zod'
-import { PrismaClient } from '../generated/prisma/client.js';
-import { PrismaPg } from '@prisma/adapter-pg';
+import {prisma} from "../prisma.js";
 import {hashPassword, verifyPassword} from "../utils/hashPassword.js";
 
 const JWT_SECRET = process.env.JWT_SECRET_KEY || "asdafagajgpaijgpa2^%@#%"
-const adapter = new PrismaPg({
-    connectionString: process.env.DATABASE_URL
-});
-const prisma = new PrismaClient({ adapter });
+
 
 //zod schemas
 const signUpSchema = z.object({
