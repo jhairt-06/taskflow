@@ -1,5 +1,6 @@
 import SignupScreen from '../assets/signup screenshot.png'
-import {useActionState} from "react";
+import {useActionState, useEffect} from "react";
+import {Link, useNavigate} from 'react-router'
 
 interface ActionState {
     success: boolean,
@@ -9,6 +10,7 @@ interface ActionState {
 
 export default function Signup(){
 
+    const navigate = useNavigate();
     const signUpUser = async (_prevState: unknown, formData:FormData): Promise<ActionState> => {
         const email = formData.get('email') as string
         const password = formData.get('password') as string
@@ -47,7 +49,11 @@ export default function Signup(){
             message: null,
         } )
 
-
+    useEffect(() => {
+        if (state.success) {
+            navigate('/dashboard')
+        }
+    }, [state.sucess, navigate])
 
     return (
         <div className='m-8 h-screen flex justify-center flex-col md:grid md:grid-cols-2 md:gap-4 md:items-center'>
@@ -114,9 +120,8 @@ export default function Signup(){
                             className='p-4 rounded-full border border-gray-200 '
                         />
 
-                        <span className='border-b border-gray-200'>
-
-                        </span>
+                        <div className='border-b border-gray-200'>
+                        </div>
 
                         {state.message && !state.success && (
                             <div className="p-4 text-sm text-red-700 text-center ">
@@ -130,10 +135,9 @@ export default function Signup(){
                         >
                             { isPending ? "Loading..." : "Sign up"}                        </button>
                     </form>
-                    {/* TODO: Change this to link to log in page */}
 
-                    <p className='text-sm text-gray-600 my-4 text-center'>
-                        Have an account? <span className='cursor-pointer text-blue-500'>Log in instead</span>
+                    <p className='text-sm text-gray-600 mt-8 text-center'>
+                        Have an account? <Link to='/login' className='cursor-pointer text-blue-500'>Log in instead</Link>
                     </p>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import SignupScreen from '../assets/signup screenshot.png'
-import {useActionState} from "react";
+import {useActionState, useEffect} from "react";
+import {Link, useNavigate} from 'react-router'
 
 interface ActionState {
     success: boolean,
@@ -9,6 +10,7 @@ interface ActionState {
 
 export default function Login(){
 
+    const navigate = useNavigate();
     const logInUser = async (_prevState: unknown, formData:FormData): Promise<ActionState> => {
         const email = formData.get('email') as string
         const password = formData.get('password') as string
@@ -48,7 +50,11 @@ export default function Login(){
             message: null,
 } )
 
-
+    useEffect(() => {
+        if (state.success) {
+            navigate('/dashboard')
+        }
+    }, [state, navigate])
 
     return (
         <div className='m-8 h-screen flex justify-center flex-col md:grid md:grid-cols-2 md:gap-4 md:items-center'>
@@ -85,10 +91,14 @@ export default function Login(){
                             placeholder='Min 6. characters'
                             className='p-4 rounded-full border border-gray-200 '
                         />
-                        {/* TODO: Change this to link to another page to recover password */}
-                        <span className='border-b border-gray-200 cursor-pointer text-sm text-blue-500 self-end'>
+
+                        {/*TODO: Add link to recover password page*/}
+                        <span className=' cursor-pointer text-sm text-blue-500 self-end'>
                             Forgot password?
                         </span>
+
+                        <div className='border-b border-gray-200'>
+                        </div>
 
                         {state.message && !state.success && (
                             <div className="p-4 text-sm text-red-700 text-center ">
@@ -102,10 +112,10 @@ export default function Login(){
                         >
                             { isPending ? "Loading..." : "Login"}                        </button>
                     </form>
-                    {/* TODO: Change this to link to sign up page */}
 
-                    <p className='text-sm text-gray-600 mt-4 text-center'>
-                        Don't have an account? <span className='cursor-pointer text-blue-500'>Sign up instead</span>
+
+                    <p className='text-sm text-gray-600 mt-8 text-center'>
+                        Don't have an account? <Link to='/signup' className='cursor-pointer text-blue-500'>Sign up instead</Link>
                     </p>
 
 
