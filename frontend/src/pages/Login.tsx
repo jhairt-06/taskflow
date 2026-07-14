@@ -1,6 +1,7 @@
 import SignupScreen from '../assets/signup screenshot.png'
 import {useActionState, useEffect} from "react";
 import {Link, useNavigate} from 'react-router'
+import ExtendedLogo from "../components/ExtendedLogo.tsx";
 
 interface ActionState {
     success: boolean,
@@ -22,8 +23,6 @@ export default function Login(){
                 },
                 body: JSON.stringify({email, password})
             })
-
-
 
             const data = await response.json()
             if (!response.ok) {
@@ -58,7 +57,7 @@ export default function Login(){
 
     return (
         <div className='m-8 h-screen flex justify-center flex-col md:grid md:grid-cols-2 md:gap-4 md:items-center'>
-            <div className='flex h-[66%] justify-center p-8 flex-col rounded-xl shadow-2xl md:shadow-lg md:border md:border-gray-200'>
+            <div className='flex bg-white h-[66%] justify-center p-8 flex-col rounded-xl shadow-2xl md:shadow-lg md:border md:border-gray-200'>
                 <h1 className='text-3xl font-bold'>
                     It's great to see you again!
                 </h1>
@@ -126,7 +125,7 @@ export default function Login(){
             h-[66%] rounded-xl text-white p-8 flex-col
             '>
                 <h2 className='text-3xl font-bold'>
-                    The simplest way to manage your projects
+                    The simplest way to manage your tasks
                 </h2>
                 <p className='mb-8 mt-2 text-sm '>
                     Enter your credentials and let's get started
@@ -137,6 +136,10 @@ export default function Login(){
                     src={SignupScreen}
                         className='rounded-sm'
                     />
+
+                </div>
+                <div className='flex-1 flex items-center justify-center'>
+                    <ExtendedLogo />
                 </div>
             </div>
         </div>

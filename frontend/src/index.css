@@ -6,8 +6,10 @@
 @theme {
   --font-custom: 'Inter', sans-serif;
   --font-header: 'Outfit', sans-serif;
+  --color-bg-color: #eef1f7
 }
 
 body {
   font-family: 'Inter', sans-serif;
+  background-color: #eef1f7
 }

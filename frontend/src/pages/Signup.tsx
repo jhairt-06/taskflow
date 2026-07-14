@@ -1,6 +1,7 @@
 import SignupScreen from '../assets/signup screenshot.png'
 import {useActionState, useEffect} from "react";
 import {Link, useNavigate} from 'react-router'
+import ExtendedLogo from "../components/ExtendedLogo.tsx";
 
 interface ActionState {
     success: boolean,
@@ -61,7 +62,7 @@ export default function Signup(){
             h-[66%] rounded-xl text-white p-8 flex-col
             '>
                 <h2 className='text-3xl font-bold'>
-                    The simplest way to manage your projects
+                    The simplest way to manage your tasks
                 </h2>
                 <p className='mb-8 mt-2 text-sm '>
                     Enter your credentials and let's get started
@@ -73,8 +74,11 @@ export default function Signup(){
                         className='rounded-sm'
                     />
                 </div>
+                <div className=' flex-1 flex items-center justify-center '>
+                    <ExtendedLogo />
+                </div>
             </div>
-            <div className='flex md:h-[66%] justify-center p-8 flex-col rounded-xl shadow-2xl md:shadow-lg border border-gray-200'>
+            <div className='flex md:h-[66%] bg-white justify-center p-8 flex-col rounded-xl shadow-2xl md:shadow-lg border border-gray-200'>
                 <h1 className='text-3xl font-bold'>
                     We're happy to meet you!
                 </h1>

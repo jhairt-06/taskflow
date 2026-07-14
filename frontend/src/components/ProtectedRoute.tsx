@@ -1,5 +1,6 @@
-import {Navigate, Outlet} from "react-router";
-import {useState, useEffect} from "react";
+import {Navigate} from "react-router";
+import {useState} from "react";
+import Navbar from "./Navbar.tsx";
 
 
 export default function ProtectedRoute() {
@@ -8,7 +9,7 @@ export default function ProtectedRoute() {
         return initialState ? initialState: null
     })
 
-    if (token) return <Outlet/>
+    if (token) return <Navbar />
 
     return <Navigate to="/login" replace/>
 
